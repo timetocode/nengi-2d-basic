@@ -1,9 +1,6 @@
-import nengi from 'nengi';
-import nengiConfig from '../common/nengiConfig';
-//import ProtocolMap from '../nengi/core/protocol/ProtocolMap';
-//import metaConfig from '../nengi/core/common/metaConfig';
-import MoveCommand from '../common/command/MoveCommand';
-
+import nengi from 'nengi'
+import nengiConfig from '../common/nengiConfig'
+import MoveCommand from '../common/command/MoveCommand'
 
 var protocolMap = new nengi.ProtocolMap(nengiConfig, nengi.metaConfig)
 

@@ -1,16 +1,20 @@
+import * as PIXI from 'pixi.js'
 import PlayerCharacter from './PlayerCharacter'
 import GreenCircle from './GreenCircle'
 import BackgroundGrid from './BackgroundGrid'
 
 class PIXIRenderer {
-    constructor(input, sounds) {
+    constructor() {
+        console.log('HERE')
         this.canvas = document.getElementById('main-canvas')
 
         this.myId = null
         this.myEntity = null
         this.entities = new Map()
 
-        this.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, {
+        this.renderer = PIXI.autoDetectRenderer({
+            width :window.innerWidth, 
+            height: window.innerHeight, 
             view: this.canvas,
             antialiasing: false,
             transparent: false,

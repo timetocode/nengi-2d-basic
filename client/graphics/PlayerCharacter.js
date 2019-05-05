@@ -1,4 +1,5 @@
-import HitpointBar from './HitpointBar';
+import * as PIXI from 'pixi.js'
+import HitpointBar from './HitpointBar'
 
 class PlayerCharacter extends PIXI.Container {
     constructor(entity) {
@@ -50,4 +51,4 @@ class PlayerCharacter extends PIXI.Container {
     }
 }
 
-export default PlayerCharacter;
+export default PlayerCharacter
