@@ -41,12 +41,12 @@ class GameInstance {
         })
 
         this.instance.onDisconnect(client => {
-            this.instance.removeEntity(client.entity)
             this.entities.delete(client.entity.nid)
+            this.instance.removeEntity(client.entity)
         })
 
 
-        for (var i = 0; i < 25; i++) {
+        for (var i = 0; i < 0; i++) {
             this.spawnGreenCircle()
         }
     }
@@ -62,8 +62,7 @@ class GameInstance {
     }
 
     update(delta) {
-
-        //console.log(this.entities.size, this.instance.clients.toArray().length, this.instance.entities.toArray().length)
+        //console.log('stats', this.entities.size, this.instance.clients.toArray().length, this.instance.entities.toArray().length)
         this.acc += delta
 
         let cmd = null
