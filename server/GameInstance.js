@@ -6,6 +6,9 @@ import Identity from '../common/message/Identity'
 import WeaponFired from '../common/message/WeaponFired'
 import CollisionSystem from '../common/CollisionSystem'
 
+import TCom from '../common/entity/TCom'
+import TCom2 from '../common/entity/TCom2'
+
 class GameInstance {
     constructor() {
         this.entities = new Map()
@@ -15,8 +18,19 @@ class GameInstance {
             //callback({ accepted: false, text: 'Connection denied.'})
 
             // create a entity for this client
-            const entity = new PlayerCharacter()
-            this.instance.addEntity(entity) // adding an entity to a nengi instance assigns it an id
+const entity = new PlayerCharacter()
+
+		const com = new TCom()
+		const com2 = new TCom2()
+
+		this.instance.addEntity(entity) // adding an entity to a nengi instance assigns it an id
+
+		entity.tcom = com
+		entity.tcom2 = com2
+
+		this.instance.addComponent(com2, entity)
+		this.instance.addComponent(com, entity)
+		
 
             // tell the client which entity it controls (the client will use this to follow it with the camera)
             this.instance.message(new Identity(entity.nid), client)
@@ -41,6 +55,9 @@ class GameInstance {
         })
 
         this.instance.onDisconnect(client => {
+			this.instance.removeComponent(client.entity.tcom, client.entity)
+			this.instance.removeComponent(client.entity.tcom2, client.entity)
+
             this.entities.delete(client.entity.nid)
             this.instance.removeEntity(client.entity)
         })

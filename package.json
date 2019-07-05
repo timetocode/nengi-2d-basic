@@ -10,7 +10,6 @@
   "license": "Apache 2.0",
   "dependencies": {
     "esm": "^3.2.22",
-    "nengi": "github:timetocode/nengi",
     "pixi.js": "^5.0.0",
     "sat": "^0.7.0"
   },

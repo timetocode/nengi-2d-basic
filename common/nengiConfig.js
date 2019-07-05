@@ -7,6 +7,9 @@ import WeaponFired from './message/WeaponFired'
 import MoveCommand from './command/MoveCommand'
 import FireCommand from './command/FireCommand'
 
+
+import TCom from  './entity/TCom'
+import TCom2 from  './entity/TCom2'
 const config = {
     UPDATE_RATE: 20, 
 
@@ -23,7 +26,11 @@ const config = {
         entities: [
             ['PlayerCharacter', PlayerCharacter],
             ['GreenCircle', GreenCircle]
-        ],
+		],
+		components: [
+			['TCom', TCom],
+			['TCom2', TCom2],
+		],
 
         localMessages: [],
         messages: [
