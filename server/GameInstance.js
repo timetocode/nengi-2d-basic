@@ -18,19 +18,19 @@ class GameInstance {
             //callback({ accepted: false, text: 'Connection denied.'})
 
             // create a entity for this client
-const entity = new PlayerCharacter()
+            const entity = new PlayerCharacter()
 
-		const com = new TCom()
-		const com2 = new TCom2()
+            const com = new TCom()
+            const com2 = new TCom2()
 
-		this.instance.addEntity(entity) // adding an entity to a nengi instance assigns it an id
+            this.instance.addEntity(entity) // adding an entity to a nengi instance assigns it an id
 
-		entity.tcom = com
-		entity.tcom2 = com2
+            entity.tcom = com
+            entity.tcom2 = com2
 
-		this.instance.addComponent(com2, entity)
-		this.instance.addComponent(com, entity)
-		
+            this.instance.addComponent(com2, entity)
+            this.instance.addComponent(com, entity)
+
 
             // tell the client which entity it controls (the client will use this to follow it with the camera)
             this.instance.message(new Identity(entity.nid), client)
@@ -55,11 +55,14 @@ const entity = new PlayerCharacter()
         })
 
         this.instance.onDisconnect(client => {
-			this.instance.removeComponent(client.entity.tcom, client.entity)
-			this.instance.removeComponent(client.entity.tcom2, client.entity)
+
+            //this.instance.removeComponent(client.entity.tcom, client.entity)
+            //this.instance.removeComponent(client.entity.tcom2, client.entity)
 
             this.entities.delete(client.entity.nid)
-            this.instance.removeEntity(client.entity)
+            //this.instance.removeEntity(client.entity)
+
+            this.instance.removeEntityAndComponents(client.entity)
         })
 
 
@@ -92,7 +95,7 @@ const entity = new PlayerCharacter()
                 const entity = client.entity
                 //console.log('command', command)
                 if (command.protocol.name === 'MoveCommand') {
-                    entity.processMove(command)                    
+                    entity.processMove(command)
                 }
 
                 if (command.protocol.name === 'FireCommand') {
