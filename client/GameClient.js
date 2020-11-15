@@ -41,6 +41,7 @@ class GameClient {
         })
 
         network.messages.forEach(message => {
+            console.log({ message })
             this.renderer.processMessage(message)
         })
 

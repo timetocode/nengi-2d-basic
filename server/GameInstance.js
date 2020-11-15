@@ -5,14 +5,24 @@ import GreenCircle from '../common/entity/GreenCircle'
 import Identity from '../common/message/Identity'
 import WeaponFired from '../common/message/WeaponFired'
 import CollisionSystem from '../common/CollisionSystem'
+import TextMessage from '../common/message/TextMessage'
+
+
+
 
 class GameInstance {
     constructor() {
         this.entities = new Map()
         this.collisionSystem = new CollisionSystem()
         this.instance = new nengi.Instance(nengiConfig, { port: 8079 })
+
+
+        this.testChannel = this.instance.createChannel()
+
         this.instance.onConnect((client, clientData, callback) => {
             //callback({ accepted: false, text: 'Connection denied.'})
+
+        
 
             // create a entity for this client
             const entity = new PlayerCharacter()
@@ -36,6 +46,12 @@ class GameInstance {
             }
 
             this.entities.set(entity.nid, entity)
+
+            console.log('Client id', client.id)
+
+            this.testChannel.subscribe(client)
+
+            this.testChannel.addMessage(new TextMessage('a new player joined'))
 
             callback({ accepted: true, text: 'Welcome!' })
         })

@@ -6,6 +6,7 @@ import Identity from './message/Identity'
 import WeaponFired from './message/WeaponFired'
 import MoveCommand from './command/MoveCommand'
 import FireCommand from './command/FireCommand'
+import TextMessage from './message/TextMessage'
 
 const config = {
     UPDATE_RATE: 20, 
@@ -28,7 +29,8 @@ const config = {
         localMessages: [],
         messages: [
             ['Identity', Identity],
-            ['WeaponFired', WeaponFired]
+            ['WeaponFired', WeaponFired],
+            ['TextMessage', TextMessage]
         ],
         commands: [
             ['MoveCommand', MoveCommand],
